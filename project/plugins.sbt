@@ -4,7 +4,6 @@ resolvers ++= Seq(
     url("http://dl.bintray.com/content/sbt/sbt-plugin-releases"))(Resolver.ivyStylePatterns)
  )
 
-addSbtPlugin("com.47deg"          % "sbt-microsites"  % "0.7.0")
 addSbtPlugin("com.eed3si9n"       % "sbt-unidoc"      % "0.4.1")
 addSbtPlugin("com.github.gseitz"  % "sbt-release"     % "1.0.8")
 addSbtPlugin("com.jsuereth"       % "sbt-pgp"         % "1.1.1")

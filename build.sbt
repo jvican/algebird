@@ -258,32 +258,12 @@ lazy val algebirdGeneric = module("generic").settings(
 lazy val docsMappingsAPIDir = settingKey[String]("Name of subdirectory in site target directory for api docs")
 
 lazy val docSettings = Seq(
-  micrositeName := "Algebird",
-  micrositeDescription := "Abstract Algebra for Scala.",
-  micrositeAuthor := "Algebird's contributors",
-  micrositeHighlightTheme := "atom-one-light",
-  micrositeHomepage := "http://twitter.github.io/algebird",
-  micrositeBaseUrl := "algebird",
-  micrositeDocumentationUrl := "api",
-  micrositeGithubOwner := "twitter",
-  micrositeExtraMdFiles := Map(file("CONTRIBUTING.md") -> microsites.ExtraMdFileConfig("contributing.md", "contributing")),
-  micrositeGithubRepo := "algebird",
-  micrositePalette := Map(
-    "brand-primary" -> "#5B5988",
-    "brand-secondary" -> "#292E53",
-    "brand-tertiary" -> "#222749",
-    "gray-dark" -> "#49494B",
-    "gray" -> "#7B7B7E",
-    "gray-light" -> "#E5E5E6",
-    "gray-lighter" -> "#F4F3F4",
-    "white-color" -> "#FFFFFF"),
   autoAPIMappings := true,
   unidocProjectFilter in (ScalaUnidoc, unidoc) :=
     inProjects(docsSourcesAndProjects(scalaVersion.value)._2:_*),
   docsMappingsAPIDir := "api",
   addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), docsMappingsAPIDir),
   ghpagesNoJekyll := false,
-  fork in tut := true,
   fork in (ScalaUnidoc, unidoc) := true,
   scalacOptions in (ScalaUnidoc, unidoc) ++= Seq(
     "-doc-source-url", "https://github.com/twitter/algebird/tree/develop€{FILE_PATH}.scala",
@@ -297,10 +277,9 @@ lazy val docSettings = Seq(
 // Documentation is generated for projects defined in
 // `docsSourcesAndProjects`.
 lazy val docs = project
-  .enablePlugins(MicrositesPlugin, TutPlugin, ScalaUnidocPlugin, GhpagesPlugin)
+  .enablePlugins(ScalaUnidocPlugin, GhpagesPlugin)
   .settings(moduleName := "algebird-docs")
   .settings(sharedSettings)
   .settings(noPublishSettings)
   .settings(docSettings)
-  .settings((scalacOptions in Tut) ~= (_.filterNot(Set("-Ywarn-unused-import", "-Ywarn-dead-code"))))
   .dependsOn(algebirdCore)
