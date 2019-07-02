@@ -71,12 +71,14 @@ val sharedSettings = Seq(
       Seq()
   },
 
+  /*
   scalacOptions ++= {
     if (scalaVersion.value startsWith "2.12")
       Seq("-opt:l:inline", "-opt-inline-from:com.twitter.algebird.**")
     else
       Seq("-optimize")
   },
+  */
 
   javacOptions ++= Seq("-target", "1.6", "-source", "1.6"),
 
